@@ -1,0 +1,66 @@
+import Link from "next/link";
+import Image from "next/image";
+import { type SanityDocument } from "next-sanity";
+
+import { client } from "@/sanity/client";
+import { Key } from "react";
+import Markdown from "react-markdown";
+import { LANG } from "@/translations";
+import Icon from "@/app/components/Icon";
+
+const POSTS_QUERY = `*[_type == "project" && language == $language]{ _id, title, description, link, github, tech, "images": images[]{"url": asset->url, "metadata": asset->metadata}, "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->
+    {title, description, link, github, tech, "images": images[]{"url": asset->url, "metadata": asset->metadata}} } | order(startDate desc)`;
+
+const options = { next: { revalidate: 30 } };
+
+
+
+export default async function ProjectPage() {
+  const projectList = await client.fetch<SanityDocument[]>(POSTS_QUERY, {language: LANG}, options);
+
+  return (
+    <main className="container mx-auto max-w-3xl p-8">
+      <h1 className="text-4xl font-bold mb-8">Projects</h1>
+      <ul className="flex flex-col gap-y-16">
+        {projectList.map((post) => (
+          <li key={post._id}>
+            <div className="flex flex-col gap-y-4">
+              <div className="prose dark:prose-invert">
+                <h2 className="text-2xl font-bold mt-0">
+                  {post.title}
+                </h2>
+                <div className="not-prose">
+                <ul className="flex gap-x-2 mt-4">
+                  {post.tech?.map((tech: string, index: Key) => (
+                    <li key={index} className="text-xs text-gray-800 dark:text-gray-100 bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 px-2 py-0.5 rounded-full">{tech}</li>
+                  ))}
+                </ul>
+              </div>
+                <Markdown>{post.description}</Markdown>
+              </div>
+              {post.images && (
+                <div className="grid grid-cols-3 gap-3">
+                  {post.images.map((image: { url: string, metadata: any }, index: Key) => (
+                    <div key={index} className="flex w-full aspect-video rounded bg-gray-100 dark:bg-gray-900 overflow-hidden">
+                      <Image src={`${image.url}?w=400&fit=max`} alt={post.title} width={image.metadata.dimensions.width} height={image.metadata.dimensions.height} />
+                    </div>
+                  ))}
+                </div>
+              )}
+              <div className="flex gap-x-4">
+                {post.link && (<Link href={post.link} target="_blank" rel="noopener noreferrer" className="group flex items-center text-white bg-emerald-800 px-3 gap-2.5 py-1.5 rounded">
+                  <span className="group-hover:underline">Open project</span>
+                  <Icon name="external_link" />
+                </Link>)}
+                {post.github && <Link href={post.github} target="_blank" rel="noopener noreferrer" className="group flex items-center text-white bg-gray-800 px-3 gap-2.5 py-1.5 rounded">
+                  <span className="group-hover:underline">Github</span>
+                  <Icon name="github"/>
+                </Link>}
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </main>
+  );
+}
