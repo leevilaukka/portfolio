@@ -54,4 +54,5 @@ const list = {
     },
 }
 
-export default (lang: Lang) => (key: keyof typeof list) => list[key][lang]
+const getTranslation = (lang: Lang) => (key: keyof typeof list) => list[key][lang]
+export default getTranslation

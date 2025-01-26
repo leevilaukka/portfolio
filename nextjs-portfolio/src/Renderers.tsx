@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
+import { ClassAttributes, LinkHTMLAttributes } from "react";
+import { ExtraProps } from "react-markdown";
 
-// @ts-ignore
-export const LinkRenderer = (props: any) => {
+export const LinkRenderer = (props: ClassAttributes<HTMLLinkElement> & LinkHTMLAttributes<HTMLLinkElement> & ExtraProps) => {
     return <a href={props.href} target="_blank" >{props.children}</a>;
 };
