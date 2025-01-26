@@ -1,9 +1,10 @@
 import { LinkRenderer } from "@/Renderers";
 import translations, { Lang } from "@/translations";
+import { SanityDocument } from "next-sanity";
 import Image from "next/image";
 import Markdown from "react-markdown";
 
-export default async function WorkItem({ post, locale }: { post: any, locale: Lang }) {
+export default async function WorkItem({ post, locale }: { post: SanityDocument, locale: Lang }) {
     const LANG = locale === "en" ? "en-US" : "fi-FI";
 
     return (

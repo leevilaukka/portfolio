@@ -37,5 +37,16 @@ export const projectType = defineType({
             type: 'url',
             title: 'GitHub URL',
         }),
+        defineField({
+            name: 'date',
+            type: 'date',
+            title: 'Date',
+        }),
+        defineField({
+            name: 'language',
+            type: 'string',
+            title: 'Language',
+            hidden: true,
+        }),
     ],
 })

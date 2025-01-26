@@ -24,6 +24,10 @@ const list = {
         "en": "Education",
         "fi": "Koulutus"
     },
+    "educationDescription": {
+        "en": "Here is a list of my education history:",
+        "fi": "Tässä on lista koulutushistoriastani:"
+    },
     "projects": {
         "en": "Projects",
         "fi": "Projektit"
@@ -31,9 +35,23 @@ const list = {
     "current": {
         "en": "current",
         "fi": "nykyhetki"
-    }
+    },
+    "cr": {
+        "en": "cr",
+        "fi": "op"
+    },
+    "grade": {
+        "en": "Grade",
+        "fi": "Arvosana"
+    },
+    "relevantCourses": {
+        "en": "Relevant courses",
+        "fi": "Relevantit kurssit"
+    },
+    "download": {
+        "en": "Download",
+        "fi": "Lataa"
+    },
 }
 
 export default (lang: Lang) => (key: keyof typeof list) => list[key][lang]
-
-export const LANG: Lang = 'en' as const

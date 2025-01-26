@@ -66,6 +66,14 @@ export const educationType = defineType({
             title: 'Relevant Courses',
             of: [{type: 'object', fields: [{type: 'string', name: 'course'}, {type: 'number', name: 'grade'}, {type:"number", name:"credits"}] }],
         }),
+        defineField({
+            name: 'language',
+            type: 'string',
+            title: 'Language',
+            options: {
+                list: ['en', 'fi']
+            }
+        }),
     ],
     
 })

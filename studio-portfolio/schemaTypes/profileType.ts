@@ -41,10 +41,20 @@ const profileType = defineType({
             title: "Description",
         }),
         defineField({
+            name: "cv",
+            type: "file",
+            title: "CV",
+        }),
+        defineField({
             name: "skills",
             type: "array",
             title: "Skills",
             of: [{ type: "string" }],
+        }),
+        defineField({
+            name: "language",
+            type: "string",
+            title: "Language",
         }),
     ],
 });
