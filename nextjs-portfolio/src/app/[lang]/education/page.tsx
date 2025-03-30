@@ -10,16 +10,16 @@ const POSTS_QUERY = `*[_type == "education" && language == $language]{ _id, inst
 
 const options = { next: { revalidate: 30 } };
 
-export async function generateMetadata({params}: {params: {lang: string}}): Promise<Metadata> {
+export async function generateMetadata(params: any): Promise<Metadata> {
   const i = translations(params.lang.split("-")[0] as Lang);
 
   return {
     title: `${i("educationTitle")} | Leevi Laukka`,
-    description: "A list of my education history."
+    description: i("educationDescList")
   };
 }
 
-export default async function EducationPage({params}: {params: {lang: string}}) {
+export default async function EducationPage(params: any) {
   const educationList = await client.fetch<SanityDocument[]>(POSTS_QUERY, {language: params.lang.split("-")[0]}, options);
   const i = translations(params.lang.split("-")[0] as Lang);
 

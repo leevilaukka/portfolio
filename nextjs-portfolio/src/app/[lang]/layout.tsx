@@ -14,7 +14,7 @@ export default async function RootLayout({
   params
 }: Readonly<{
   children: React.ReactNode;
-  params: { lang: string };
+  params: any
 }>) {
   const lang = params.lang.split("-")[0];
   const i = translations(lang as Lang);

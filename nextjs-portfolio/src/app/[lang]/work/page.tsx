@@ -16,7 +16,7 @@ const POSTS_QUERY = `
 
 const options = { next: { revalidate: 30 } };
 
-export async function generateMetadata({params}: {params: {lang: string}}): Promise<Metadata> {
+export async function generateMetadata(params: any): Promise<Metadata> {
   const i = translations(params.lang.split("-")[0] as Lang);
 
   return {
@@ -27,7 +27,8 @@ export async function generateMetadata({params}: {params: {lang: string}}): Prom
 export default async function WorkPage({
   params
 }: Readonly<{
-  params: { lang: string };
+  params:any
+  // params: { lang: string }
 }>) {
   const LANG = params.lang.split("-")[0];
   const i = translations(params.lang.split("-")[0] as Lang);

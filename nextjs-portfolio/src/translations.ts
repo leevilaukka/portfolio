@@ -28,6 +28,10 @@ const list = {
         "en": "Here is a list of my education history:",
         "fi": "Tässä on lista koulutushistoriastani:"
     },
+    "educationDescList": {
+        "en": "A list of my education history.",
+        "fi": "Lista koulutushistoriastani."
+    },
     "projects": {
         "en": "Projects",
         "fi": "Projektit"
