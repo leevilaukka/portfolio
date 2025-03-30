@@ -13,18 +13,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
+      alternates: {languages: {
+        'en': 'https://leevila.fi/en-US/work',
+        'fi': 'https://leevila.fi/fi-FI/work',
+      }},
     },
     {
       url: 'https://leevila.fi/education',
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.5,
+      alternates: {languages: {
+        'en': 'https://leevila.fi/en-US/education',
+        'fi': 'https://leevila.fi/fi-FI/education',
+      }},
     },
     {
       url: 'https://leevila.fi/projects',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.5,
+      alternates: {languages: {
+        'en': 'https://leevila.fi/en-US/projects',
+        'fi': 'https://leevila.fi/fi-FI/projects',
+      }},
     },
   ]
 }
