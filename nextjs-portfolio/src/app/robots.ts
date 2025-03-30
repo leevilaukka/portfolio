@@ -6,5 +6,8 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/'
     },
+
+    sitemap: 'https://leevila.fi/sitemap.xml',
+    host: 'https://leevila.fi',
   }
 }
