@@ -1,5 +1,9 @@
 export type Lang = 'en' | 'fi'
 const list = {
+    "skills": {
+        "en": "Skills",
+        "fi": "Taidot"
+    },
     "workTitle": {
         "en": "Work Experience",
         "fi": "Työkokemus"

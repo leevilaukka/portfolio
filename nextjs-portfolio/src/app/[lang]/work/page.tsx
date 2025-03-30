@@ -17,7 +17,8 @@ const POSTS_QUERY = `
 const options = { next: { revalidate: 30 } };
 
 export async function generateMetadata({params}: any): Promise<Metadata> {
-  const i = translations(params.lang.split("-")[0] as Lang);
+  const lang = await (params).lang.split("-")[0];
+  const i = translations(lang as Lang);
 
   return {
     title: `${i("workTitle")} | Leevi Laukka`
@@ -30,14 +31,14 @@ export default async function WorkPage({
   params:any
   // params: { lang: string }
 }>) {
-  const LANG = params.lang.split("-")[0];
-  const i = translations(params.lang.split("-")[0] as Lang);
+  const LANG = await (params).lang.split("-")[0];
+  const i = translations(await LANG as Lang);
   const workList = await client.fetch<SanityDocument[]>(POSTS_QUERY, {language: params.lang.split("-")[0]}, options);
   const it = workList.filter((post) => !post.nonIT);
   const nonIt = workList.filter((post) => post.nonIT);
 
   return (
-    <main className="container mx-auto max-w-3xl p-8 min-h-screen">
+    <main className="container mx-auto max-w-3xl p-8 min-h-fit">
       <h1 className="text-3xl font-bold mb-8">{i("workTitle")}</h1>
       <h2 className="text-2xl font-bold mb-4">IT</h2>
       <ul className="flex flex-col gap-y-4 mb-8">

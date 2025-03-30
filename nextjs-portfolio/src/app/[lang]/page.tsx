@@ -42,7 +42,7 @@ export default async function IndexPage({params}: any) {
       <Markdown className="profile-description mt-4 text-gray-700 prose text-center text-pretty">{profile.description}</Markdown>
       <div className="profile-contact mt-4 text-center">
       </div>
-      <h2 className="profile-skills-title text-2xl font-semibold mt-6 text-center">Skills</h2>
+      <h2 className="profile-skills-title text-2xl font-semibold mt-6 text-center">{i("skills")}</h2>
       <ul className="profile-skills list-disc list-inside mt-2 space-y-1">
         {profile.skills.map((skill: string, index: number) => (
           <li key={index} className="profile-skill text-gray-700">{skill}</li>
