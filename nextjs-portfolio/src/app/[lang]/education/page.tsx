@@ -10,7 +10,7 @@ const POSTS_QUERY = `*[_type == "education" && language == $language]{ _id, inst
 
 const options = { next: { revalidate: 30 } };
 
-export async function generateMetadata(params: any): Promise<Metadata> {
+export async function generateMetadata({params}: any): Promise<Metadata> {
   const i = translations(params.lang.split("-")[0] as Lang);
 
   return {
@@ -19,7 +19,7 @@ export async function generateMetadata(params: any): Promise<Metadata> {
   };
 }
 
-export default async function EducationPage(params: any) {
+export default async function EducationPage({params}: any) {
   const educationList = await client.fetch<SanityDocument[]>(POSTS_QUERY, {language: params.lang.split("-")[0]}, options);
   const i = translations(params.lang.split("-")[0] as Lang);
 

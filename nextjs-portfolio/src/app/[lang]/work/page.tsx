@@ -16,7 +16,7 @@ const POSTS_QUERY = `
 
 const options = { next: { revalidate: 30 } };
 
-export async function generateMetadata(params: any): Promise<Metadata> {
+export async function generateMetadata({params}: any): Promise<Metadata> {
   const i = translations(params.lang.split("-")[0] as Lang);
 
   return {

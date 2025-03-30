@@ -10,7 +10,7 @@ export const metadata = {
   title: "Leevi Laukka"
 };
 
-export default async function IndexPage(params: any) {
+export default async function IndexPage({params}: any) {
   const PROFILE_QUERY = `*[_type == "profile" && language == $language]{ _id, title, location, description, email, github, skills, "imageURL": image.asset->url, "cv": cv.asset->url, phone, "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->
     {title, name, location, description, email, github, skills,  "imageURL": image.asset->url, "cv": cv.asset->url, phone} }`;
 
