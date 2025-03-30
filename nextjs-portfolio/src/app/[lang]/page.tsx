@@ -21,7 +21,7 @@ export default async function IndexPage({params}: any) {
   const i = translations(params.lang.split("-")[0] as Lang);
 
   return (
-    <div className="profile p-6 rounded-lg shadow-md max-w-md mx-auto">
+    <div className="profile p-6 rounded-lg shadow-md max-w-lg mx-auto">
       <Image src={profile.imageURL} alt={profile.title} width={150} height={150} className="profile-image rounded-full mx-auto" />
       <h1 className="profile-title text-3xl font-bold text-center mt-4">{profile.title}</h1>
       <p className="profile-location text-center text-gray-600">{profile.location}</p>
@@ -36,7 +36,7 @@ export default async function IndexPage({params}: any) {
       <Link href={`${profile.cv}?dl=CV_${(profile.title as string).split(" ")[0]}_${(profile.title as string).split(" ")[1]}_${params.lang.split("-")[0].toUpperCase()}.pdf`} className="profile-cv text-blue-500 hover:underline mt-4 block text-center">
         <Icon name="download" /> {i("download")} CV
       </Link>
-      <Markdown className="profile-description mt-4 text-gray-700 prose">{profile.description}</Markdown>
+      <Markdown className="profile-description mt-4 text-gray-700 prose text-center text-pretty">{profile.description}</Markdown>
       <div className="profile-contact mt-4 text-center">
       </div>
       <h2 className="profile-skills-title text-2xl font-semibold mt-6 text-center">Skills</h2>
