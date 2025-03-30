@@ -45,6 +45,11 @@ export default async function RootLayout({
             </nav>
           </header>
         {children}
+        <footer className="bg-emerald-800 text-white p-3 mt-6 shadow-md bottom-0 z-10 backdrop-blur backdrop-filter bg-opacity-40 dark:bg-opacity-30">
+          <div className="container mx-auto flex justify-center items-center">
+            <p className="text-sm font-semibold">&copy; Leevi Laukka 2025 | Built using <Link className="text-blue-500 hover:underline" href={"https://nextjs.org/"} target="_blank">Next.js</Link>, <Link className="text-blue-500 hover:underline" href={"https://tailwindcss.com/"} target="_blank">Tailwind</Link> and <Link className="text-blue-500 hover:underline" href={"https://www.sanity.io/"} target="_blank">Sanity CMS</Link> | Hosted on <Link className="text-blue-500 hover:underline" href={"https://www.vercel.com/"} target="_blank">Vercel</Link></p>
+          </div>
+        </footer>
       </body>
     </html>
   );
