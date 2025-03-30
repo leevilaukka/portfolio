@@ -11,8 +11,8 @@ export const metadata = {
 };
 
 export default async function IndexPage({params}: any) {
-  const PROFILE_QUERY = `*[_type == "profile" && language == $language]{ _id, title, location, description, email, github, skills, "imageURL": image.asset->url, "cv": cv.asset->url, phone, "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->
-    {title, name, location, description, email, github, skills,  "imageURL": image.asset->url, "cv": cv.asset->url, phone} }`;
+  const PROFILE_QUERY = `*[_type == "profile" && language == $language]{ _id, title, location, description, email, github, linkedin, skills, "imageURL": image.asset->url, "cv": cv.asset->url, phone, "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->
+    {title, name, location, description, email, github, linkedin, skills,  "imageURL": image.asset->url, "cv": cv.asset->url, phone} }`;
 
   const options = { next: { revalidate: 30 } };
 
@@ -32,7 +32,10 @@ export default async function IndexPage({params}: any) {
         <Link href={profile.github} className="profile-github text-blue-500 hover:underline mt-2" target="_blank" rel="noopener noreferrer">
           <Icon name="github" />
         </Link>
-      </div>
+        <Link href={profile.linkedin} className="profile-linkedin text-blue-500 hover:underline mt-2 ml-4" target="_blank" rel="noopener noreferrer">
+          <Icon name="linkedin" />
+        </Link>
+        </div>
       <Link href={`${profile.cv}?dl=CV_${(profile.title as string).split(" ")[0]}_${(profile.title as string).split(" ")[1]}_${params.lang.split("-")[0].toUpperCase()}.pdf`} className="profile-cv text-blue-500 hover:underline mt-4 block text-center">
         <Icon name="download" /> {i("download")} CV
       </Link>
