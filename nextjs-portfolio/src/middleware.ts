@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, userAgent } from "next/server";
 import { match } from "@formatjs/intl-localematcher"
 import  Negotiator from "negotiator"
 
@@ -13,6 +13,10 @@ function getLocale(request: NextRequest) {
 }
 
 export function middleware(request: NextRequest) {
+    if (userAgent(request).isBot) {
+        // Don't redirect bots
+        return NextResponse.next()
+    }
     // Check if there is any supported locale in the pathname
     const { pathname } = request.nextUrl
     const pathnameHasLocale = locales.some(
