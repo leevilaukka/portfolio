@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import translations, { Lang,  } from "@/translations";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 const interSans = Inter({
   variable: "--font-inter-sans",
@@ -21,6 +23,8 @@ export default async function RootLayout({
 
   return (
     <html lang={params.lang}>
+      <SpeedInsights />
+      <Analytics />
       <body
         className={`${interSans.variable} font-sans antialiased`}
       >
