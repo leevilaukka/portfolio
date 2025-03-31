@@ -37,8 +37,6 @@ export default async function WorkPage({
   const it = workList.filter((post) => !post.nonIT);
   const nonIt = workList.filter((post) => post.nonIT);
 
-  const str = i("relevantCourses")
-
   return (
     <main className="container mx-auto max-w-3xl p-8 min-h-fit">
       <h1 className="text-3xl font-bold mb-8">{i("workTitle")}</h1>
