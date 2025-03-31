@@ -26,7 +26,6 @@ export default async function EducationPage({params}: any) {
   return (
     <main className="container mx-auto min-h-screen max-w-3xl p-8">
       <h1 className="text-4xl font-bold mb-8">{i("education")}</h1>
-      <p className="flex mb-4">{i("educationDescription")}</p>
       <ul className="flex flex-col gap-y-4">
         {educationList.map((post) => (
           <li key={post._id} className="flex gap-x-4 gap-y-4 items-center">
@@ -43,7 +42,10 @@ export default async function EducationPage({params}: any) {
                   <p>{i("relevantCourses")}:</p>
                   <ul className="flex flex-col gap-y-1 ml-4">
                     {post.courses.map((item: {course: string, credits: number, grade: number}, index: number) => (
-                      <li key={index}>{item.course}, {item.credits} {i("cr")}, {i("grade")}: {item.grade}</li>
+                      <li key={index} className="flex flex-row gap-x-2">
+                        <span className="font-bold" title={`${i("grade")}: ${item.grade}`}>{item.course}</span>
+                        <span className="text-gray-500" >{item.credits} {i("cr")}</span>
+                      </li>
                     ))}
                   </ul>
                 </div>

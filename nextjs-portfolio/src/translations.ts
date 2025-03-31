@@ -60,7 +60,16 @@ const list = {
         "en": "Download",
         "fi": "Lataa"
     },
+    "openproject": {
+        "en": "Open project",
+        "fi": "Avaa projekti"
+    },
+} as const
+
+
+const getTranslation = (lang: Lang) => (key: keyof typeof list): typeof list[keyof typeof list][Lang] => {
+    return list[key][lang]
 }
 
-const getTranslation = (lang: Lang) => (key: keyof typeof list) => list[key][lang]
+
 export default getTranslation

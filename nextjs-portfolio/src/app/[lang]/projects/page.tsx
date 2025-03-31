@@ -69,7 +69,7 @@ export default async function ProjectPage({params}: any) {
               )}
               <div className="flex gap-x-4">
                 {post.link && (<Link href={post.link} target="_blank" rel="noopener noreferrer" className="group flex items-center text-white bg-emerald-800 px-3 gap-2.5 py-1.5 rounded">
-                  <span className="group-hover:underline">Open project</span>
+                  <span className="group-hover:underline">{i("openproject")}</span>
                   <Icon name="external_link" />
                 </Link>)}
                 {post.github && <Link href={post.github} target="_blank" rel="noopener noreferrer" className="group flex items-center text-white bg-gray-800 px-3 gap-2.5 py-1.5 rounded">
