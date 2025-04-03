@@ -14,9 +14,11 @@ function getLocale(request: NextRequest) {
 
 export function middleware(request: NextRequest) {
     if (userAgent(request).isBot) {
-        // Redirect bots to the English version of the site
-        // Dont loopback to the bot URL
-        if (request.nextUrl.pathname.startsWith('/en-US')) return
+        // Check if bot is already targeting a locale
+        // If the bot is already targeting a locale, do not redirect
+        if (request.nextUrl.pathname.startsWith('/en-US') || request.nextUrl.pathname.startsWith("/fi-FI")) return
+
+        // Redirect bot to the default locale
         const botLocale = 'en-US'
         const { pathname } = request.nextUrl
         const botUrl = new URL(`/${botLocale}${pathname}`, request.url)
