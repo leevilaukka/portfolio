@@ -16,7 +16,8 @@ const options = { next: { revalidate: 30 } };
 
 
 export async function generateMetadata({params}:any): Promise<Metadata> {
-  const i = translations(params.lang.split("-")[0] as Lang);
+  const {lang} = await params;
+  const i = translations(lang.split("-")[0] as Lang);
 
   return {
     title: `${i("projectsTitle")} | Leevi Laukka`,
@@ -25,7 +26,8 @@ export async function generateMetadata({params}:any): Promise<Metadata> {
 }
 
 export default async function ProjectPage({params}: any) {
-  const lang = params.lang.split("-")[0];
+  const rawLang = await params.lang;
+  const lang = rawLang.split("-")[0];
   const projectList = await client.fetch<SanityDocument[]>(POSTS_QUERY, { language: lang }, options);
 
   const i = translations(lang as Lang);

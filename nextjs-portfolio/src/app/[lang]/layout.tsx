@@ -18,11 +18,11 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: any
 }>) {
-  const lang = params.lang.split("-")[0];
-  const i = translations(lang as Lang);
+  const {lang} = await params;
+  const i = translations(lang.split("-")[0] as Lang);
 
   return (
-    <html lang={params.lang}>
+    <html lang={lang}>
       <SpeedInsights />
       <Analytics />
       <body

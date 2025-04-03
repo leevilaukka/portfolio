@@ -23,10 +23,10 @@ export default async function IndexPage({params}: any) {
     {title, name, location, description, email, github, linkedin, skills,  "imageURL": image.asset->url, "cv": cv.asset->url, phone} }`;
 
   const options = { next: { revalidate: 30 } };
+  const {lang} = await params;
 
-  const [profile] = await client.fetch(PROFILE_QUERY, { language: params.lang.split("-")[0] }, options);
-
-  const i = translations(params.lang.split("-")[0] as Lang);
+  const [profile] = await client.fetch(PROFILE_QUERY, { language: lang.split("-")[0] }, options);
+  const i = translations(lang.split("-")[0] as Lang);
 
   return (
     <div className="profile p-6 rounded-lg shadow-md max-w-lg mx-auto">
@@ -44,7 +44,7 @@ export default async function IndexPage({params}: any) {
           <Icon name="linkedin" />
         </Link>
         </div>
-      <Link href={`${profile.cv}?dl=CV_${(profile.title as string).split(" ")[0]}_${(profile.title as string).split(" ")[1]}_${params.lang.split("-")[0].toUpperCase()}.pdf`} className="profile-cv text-blue-500 hover:underline mt-4 block text-center">
+      <Link href={`${profile.cv}?dl=CV_${(profile.title as string).split(" ")[0]}_${(profile.title as string).split(" ")[1]}_${lang.split("-")[0].toUpperCase()}.pdf`} className="profile-cv text-blue-500 hover:underline mt-4 block text-center">
         <Icon name="download" /> {i("download")} CV
       </Link>
       <Markdown className="profile-description mt-4 text-gray-700 dark:text-gray-300 prose text-center text-pretty">{profile.description}</Markdown>

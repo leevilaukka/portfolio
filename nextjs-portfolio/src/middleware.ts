@@ -46,6 +46,8 @@ export const config = {
     matcher: [
         // Skip all internal paths (_next)
         '/((?!_next).*)',
+        // Skip favicons
+        '/favicon.ico',
         // Optional: only run on root (/) URL
         '/'
     ],
