@@ -17,7 +17,7 @@ export default async function WorkItem({ post, locale }: { post: SanityDocument,
                     components={{
                         link: LinkRenderer
                     }}
-                    className="max-w-prose text-gray-500 [&_a]:text-blue-300 [&_a]:hover:underline"
+                    className="max-w-prose text-gray-600 dark:text-gray-400 [&_a]:dark:text-blue-300 [&_a]:text-blue-500 [&_a]:hover:underline"
                 >
                         {post.description}
                 </Markdown>

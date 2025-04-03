@@ -33,7 +33,7 @@ export default async function EducationPage({params}: any) {
             <div>
               <div className="flex flex-row gap-x-4 items-center">
                 <h2 className="text-2xl font-bold">{post.institution}</h2>
-                <p className="text-sm text-gray-500">{post.location}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">{post.location}</p>
               </div>
               <p>{post.degree}, {new Date(post.startDate).toLocaleDateString("fi-FI")} - {new Date(post.endDate).toLocaleDateString("fi-FI")}</p>
               <Markdown>{post.description}</Markdown>

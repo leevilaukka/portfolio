@@ -45,9 +45,9 @@ export default async function RootLayout({
           </nav>
         </header>
         {children}
-        <footer className="bg-emerald-800 text-white p-4 md:w-[80%] sm:w-full shadow-md md:bottom-[1rem] z-10 backdrop-blur backdrop-filter bg-opacity-20 dark:bg-opacity-40 md:mb-4 mt-6 md:rounded-lg mx-auto">
+        <footer className="bg-emerald-800 text-white p-4 md:w-[80%] sm:w-full shadow-md md:bottom-[1rem] z-10 backdrop-blur backdrop-filter bg-opacity-70 dark:bg-opacity-70 md:mb-4 mt-6 md:rounded-lg mx-auto">
           <div className="container mx-auto flex justify-center items-center">
-            <p className="text-sm">&copy; Leevi Laukka 2025 | Built using <Link className="text-blue-500 hover:underline" href={"https://nextjs.org/"} target="_blank">Next.js</Link>, <Link className="text-blue-500 hover:underline" href={"https://tailwindcss.com/"} target="_blank">Tailwind</Link> and <Link className="text-blue-500 hover:underline" href={"https://www.sanity.io/"} target="_blank">Sanity CMS</Link> | Hosted on <Link className="text-blue-500 hover:underline" href={"https://www.vercel.com/"} target="_blank">Vercel</Link>
+            <p className="text-sm">&copy; Leevi Laukka 2025 | Built using <Link className="text-blue-700 dark:text-blue-500 hover:underline" href={"https://nextjs.org/"} target="_blank">Next.js</Link>, <Link className="text-blue-700 dark:text-blue-500 hover:underline" href={"https://tailwindcss.com/"} target="_blank">Tailwind</Link> and <Link className="text-blue-700 dark:text-blue-500 hover:underline" href={"https://www.sanity.io/"} target="_blank">Sanity CMS</Link> | Hosted on <Link className="text-blue-700 dark:text-blue-500 hover:underline" href={"https://www.vercel.com/"} target="_blank">Vercel</Link>
             </p>
           </div>
         </footer>

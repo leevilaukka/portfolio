@@ -17,6 +17,8 @@ export function middleware(request: NextRequest) {
         // Don't redirect bots
         return NextResponse.next()
     }
+
+    // Check if trying to access a file in the public folder
     // Check if there is any supported locale in the pathname
     const { pathname } = request.nextUrl
     const pathnameHasLocale = locales.some(
