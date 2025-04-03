@@ -36,6 +36,11 @@ const profileType = defineType({
             title: "GitHub",
         }),
         defineField({
+            name: "linkedin",
+            type: "url",
+            title: "LinkedIn",
+        }),
+        defineField({
             name: "description",
             type: "markdown",
             title: "Description",
