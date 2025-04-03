@@ -14,8 +14,13 @@ function getLocale(request: NextRequest) {
 
 export function middleware(request: NextRequest) {
     if (userAgent(request).isBot) {
-        // Don't redirect bots
-        return NextResponse.next()
+        // Redirect bots to the English version of the site
+        // Dont loopback to the bot URL
+        if (request.nextUrl.pathname.startsWith('/en-US')) return
+        const botLocale = 'en-US'
+        const { pathname } = request.nextUrl
+        const botUrl = new URL(`/${botLocale}${pathname}`, request.url)
+        return NextResponse.redirect(botUrl)
     }
 
     // Check if trying to access a file in the public folder
