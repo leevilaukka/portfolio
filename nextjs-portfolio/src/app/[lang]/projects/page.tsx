@@ -8,6 +8,7 @@ import Markdown from "react-markdown";
 import translations, { Lang } from "@/translations";
 import Icon from "@/app/[lang]/components/Icon";
 import { Metadata } from "next";
+import { CodeRenderer } from "@/Renderers";
 
 const POSTS_QUERY = `*[_type == "project" && language == $language]{ _id, title, description, link, github, tech, date, "images": images[]{"url": asset->url, "metadata": asset->metadata}, "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->
     {title, description, link, github, tech, date, "images": images[]{"url": asset->url, "metadata": asset->metadata}} } | order(date desc)`;
@@ -63,7 +64,11 @@ export default async function ProjectPage({params}: any) {
                     ))}
                   </ul>
                 </div>
-                <Markdown>{post.description}</Markdown>
+                <Markdown
+                  components={{
+                    code: CodeRenderer
+                  }}
+                >{post.description}</Markdown>
               </div>
               {post.images && (
                 <div className="grid grid-cols-3 gap-3">
