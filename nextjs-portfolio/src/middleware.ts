@@ -34,7 +34,7 @@ export function middleware(request: NextRequest) {
         // Check if bot is trying to access sitemap.xml or robots.txt
         // If so, do not redirect
         if (request.nextUrl.pathname.includes('/sitemap.xml')) return
-        if (request.nextUrl.pathname.includes('/robots.xml')) return
+        if (request.nextUrl.pathname.includes('/robots.txt')) return
         
         // Check if bot is already targeting a locale
         // If the bot is already targeting a locale, do not redirect
