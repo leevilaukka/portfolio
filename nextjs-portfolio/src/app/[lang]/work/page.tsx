@@ -16,14 +16,29 @@ const POSTS_QUERY = `
 
 const options = { next: { revalidate: 30 } };
 
-export async function generateMetadata({params}: any): Promise<Metadata> {
-  const {lang} = await params;
+export async function generateMetadata({ params }): Promise<Metadata> {
+  const { lang } = await params;
   const i = translations(lang.split("-")[0] as Lang);
 
   return {
-    title: `${i("workTitle")} | Leevi Laukka`
-  };
-}
+    title: `Leevi Laukka | ${i("workTitle")}`,
+    alternates: {
+      languages: {
+        "fi": "/fi-FI/work",
+        "en": "/en-US/work",
+      },
+    },
+    keywords: ["Leevi Laukka", "Portfolio", "Web Developer", "Software Engineer"],
+    description: i("work"),
+    openGraph: {
+      title: `Leevi Laukka | ${i("workTitle")}`,
+      alternateLocale: [ "fi-FI", "en-US" ],
+      description: i("work"),
+      url: "leevila.fi",
+      type: "website",
+    },
+  }
+};
 
 export default async function WorkPage({
   params

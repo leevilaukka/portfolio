@@ -10,15 +10,29 @@ const POSTS_QUERY = `*[_type == "education" && language == $language]{ _id, inst
 
 const options = { next: { revalidate: 30 } };
 
-export async function generateMetadata({params}: any): Promise<Metadata> {
-  const {lang} = await params;
+export async function generateMetadata({ params }): Promise<Metadata> {
+  const { lang } = await params;
   const i = translations(lang.split("-")[0] as Lang);
 
   return {
-    title: `${i("educationTitle")} | Leevi Laukka`,
-    description: i("educationDescList")
-  };
-}
+    title: `Leevi Laukka | ${i("education")}`,
+    alternates: {
+      languages: {
+        "fi": `/fi-FI/education`,
+        "en": "/en-US/education",
+      },
+    },
+    keywords: ["Leevi Laukka", "Portfolio", "Web Developer", "Software Engineer"],
+    description: i("educationDescList"),
+    openGraph: {
+      title: `Leevi Laukka | ${i("education")}`,
+      alternateLocale: [ "fi-FI", "en-US" ],
+      description: i("ogDesc"),
+      url: "leevila.fi",
+      type: "website",
+    },
+  }
+};
 
 export default async function EducationPage({params}: any) {
   const rawLang = await params.lang;

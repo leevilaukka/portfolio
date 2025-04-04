@@ -14,16 +14,29 @@ const POSTS_QUERY = `*[_type == "project" && language == $language]{ _id, title,
 
 const options = { next: { revalidate: 30 } };
 
-
-export async function generateMetadata({params}:any): Promise<Metadata> {
-  const {lang} = await params;
+export async function generateMetadata({ params }): Promise<Metadata> {
+  const { lang } = await params;
   const i = translations(lang.split("-")[0] as Lang);
 
   return {
-    title: `${i("projectsTitle")} | Leevi Laukka`,
-    description: "A list of projects I have worked on.",
-  };
-}
+    title: `Leevi Laukka | ${i("projectsTitle")}`,
+    alternates: {
+      languages: {
+        "fi": "/fi-FI/projects",
+        "en": "/en-US/projects",
+      },
+    },
+    keywords: ["Leevi Laukka", "Portfolio", "Web Developer", "Software Engineer"],
+    description: i("projects"),
+    openGraph: {
+      title: `Leevi Laukka | ${i("projectsTitle")}`,
+      alternateLocale: [ "fi-FI", "en-US" ],
+      description: i("projects"),
+      url: "leevila.fi",
+      type: "website",
+    },
+  }
+};
 
 export default async function ProjectPage({params}: any) {
   const rawLang = await params.lang;

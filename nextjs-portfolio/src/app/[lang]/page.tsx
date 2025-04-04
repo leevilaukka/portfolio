@@ -7,23 +7,36 @@ import Icon from "./components/Icon";
 import translations, { Lang } from "@/translations";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Leevi Laukka",
-  description: "Hi, I'm Leevi, a web developer from Finland! Welcome to my portfolio.",
-  openGraph: {
-    title: "Leevi Laukka",
-    description: "Hi, I'm Leevi, a web developer from Finland! Welcome to my portfolio.",
-    url: "leevila.fi",
-    type: "website",
-  },
+export async function generateMetadata({ params }): Promise<Metadata> {
+  const { lang } = await params;
+  const i = translations(lang.split("-")[0] as Lang);
+
+  return {
+    title: `Leevi Laukka | Portfolio`,
+    alternates: {
+      languages: {
+        "fi": "/fi-FI",
+        "en": "/en-US",
+      },
+    },
+    keywords: ["Leevi Laukka", "Portfolio", "Web Developer", "Software Engineer"],
+    description: i("ogDesc"),
+    openGraph: {
+      title: `Leevi Laukka | Portfolio`,
+      alternateLocale: [ "fi-FI", "en-US" ],
+      description: i("ogDesc"),
+      url: "leevila.fi",
+      type: "website",
+    },
+  }
 };
 
-export default async function IndexPage({params}: any) {
+export default async function IndexPage({ params }: any) {
   const PROFILE_QUERY = `*[_type == "profile" && language == $language]{ _id, title, location, description, email, github, linkedin, skills, "imageURL": image.asset->url, "cv": cv.asset->url, phone, "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->
     {title, name, location, description, email, github, linkedin, skills,  "imageURL": image.asset->url, "cv": cv.asset->url, phone} }`;
 
   const options = { next: { revalidate: 30 } };
-  const {lang} = await params;
+  const { lang } = await params;
 
   const [profile] = await client.fetch(PROFILE_QUERY, { language: lang.split("-")[0] }, options);
   const i = translations(lang.split("-")[0] as Lang);
@@ -43,7 +56,7 @@ export default async function IndexPage({params}: any) {
         <Link href={profile.linkedin} className="profile-linkedin text-blue-500 hover:underline mt-2 ml-4" target="_blank" rel="noopener noreferrer">
           <Icon name="linkedin" />
         </Link>
-        </div>
+      </div>
       <Link href={`${profile.cv}?dl=CV_${(profile.title as string).split(" ")[0]}_${(profile.title as string).split(" ")[1]}_${lang.split("-")[0].toUpperCase()}.pdf`} className="profile-cv text-blue-500 hover:underline mt-4 block text-center">
         <Icon name="download" /> {i("download")} CV
       </Link>

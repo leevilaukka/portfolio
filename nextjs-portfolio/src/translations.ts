@@ -1,5 +1,9 @@
 export type Lang = 'en' | 'fi'
 const list = {
+    "home": {
+        "en": "Home",
+        "fi": "Etusivu"
+    },
     "skills": {
         "en": "Skills",
         "fi": "Taidot"
@@ -63,6 +67,10 @@ const list = {
     "openproject": {
         "en": "Open project",
         "fi": "Avaa projekti"
+    },
+    "ogDesc": {
+        "en": "Hi, I'm Leevi, a web developer from Finland! Welcome to my portfolio.",
+        "fi": "Hei, olen Leevi, web-kehittäjä Suomesta! Tervetuloa portfoliooni."
     },
 } as const
 
