@@ -31,6 +31,11 @@ const curlResponse = () => {
 
 export function middleware(request: NextRequest) {
     if (userAgent(request).isBot) {
+        // Check if bot is trying to access sitemap.xml or robots.txt
+        // If so, do not redirect
+        if (request.nextUrl.pathname.includes('/sitemap.xml')) return
+        if (request.nextUrl.pathname.includes('/robots.xml')) return
+        
         // Check if bot is already targeting a locale
         // If the bot is already targeting a locale, do not redirect
         if (request.nextUrl.pathname.startsWith('/en-US') || request.nextUrl.pathname.startsWith("/fi-FI")) return
