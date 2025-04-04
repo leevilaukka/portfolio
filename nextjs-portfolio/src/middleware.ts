@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse, userAgent } from "next/server";
 import { match } from "@formatjs/intl-localematcher"
-import  Negotiator from "negotiator"
+import Negotiator from "negotiator"
 
 const locales = ['en-US', "fi-FI"]
 
@@ -11,6 +11,23 @@ function getLocale(request: NextRequest) {
 
     return match(languages, locales, defaultLocale) // -> 'en-US'
 }
+
+const curlResponse = () => {
+        return new Response(`
+            Hi! I'm Leevi, a web developer from Finland!
+
+        You can find my portfolio at: https://leevila.fi 
+            my GitHub at: https://github.com/leevilaukka  
+            and my LinkedIn at: https://www.linkedin.com/in/leevilaukka/ 
+
+        Feel free to reach out if you have any questions or just want to chat!
+            
+                        Have a great day!
+            
+`, 
+            {status: 200, headers: { 'Content-Type': 'text/plain' }})
+    }
+
 
 export function middleware(request: NextRequest) {
     if (userAgent(request).isBot) {
@@ -25,6 +42,7 @@ export function middleware(request: NextRequest) {
         return NextResponse.redirect(botUrl)
     }
 
+    if (userAgent(request).ua.includes("curl")) return curlResponse()
     // Check if trying to access a file in the public folder
     // Check if there is any supported locale in the pathname
     const { pathname } = request.nextUrl
