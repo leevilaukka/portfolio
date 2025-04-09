@@ -15,27 +15,37 @@ export async function generateMetadata({ params }): Promise<Metadata> {
   const i = translations(lang.split("-")[0] as Lang);
 
   return {
-    title: `Leevi Laukka | ${i("education")}`,
+    title: i("education"),
     alternates: {
       languages: {
         "fi": `/fi-FI/education`,
         "en": "/en-US/education",
       },
     },
-    keywords: ["Leevi Laukka", "Portfolio", "Web Developer", "Software Engineer"],
-    description: i("educationDescList"),
     openGraph: {
-      title: `Leevi Laukka | ${i("education")}`,
-      alternateLocale: [ "fi-FI", "en-US" ],
-      description: i("ogDesc"),
+      title: i("education"),
+      alternateLocale: ["fi-FI", "en-US"],
       url: "leevila.fi",
       type: "website",
+      images: [
+        {
+          url: "https://leevila.fi/twitter-image.jpg",
+          alt: "Leevi Laukka",
+        },
+      ]
+    },
+    description: i("educationDescList"),
+    twitter: {
+      title: i("education"),
+      description: i("educationDescList"),
+      card: "summary",
+      creator: "@LeeviLaukka",
     },
   }
 };
 
 export default async function EducationPage({params}: any) {
-  const rawLang = await params.lang;
+  const {lang:rawLang} = await params;
   const lang = rawLang.split("-")[0];
   const educationList = await client.fetch<SanityDocument[]>(POSTS_QUERY, {language: lang}, options);
   const i = translations(lang as Lang);

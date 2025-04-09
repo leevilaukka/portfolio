@@ -21,7 +21,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
   const i = translations(lang.split("-")[0] as Lang);
 
   return {
-    title: `Leevi Laukka | ${i("workTitle")}`,
+    title: i("workTitle"),
     alternates: {
       languages: {
         "fi": "/fi-FI/work",
@@ -31,11 +31,21 @@ export async function generateMetadata({ params }): Promise<Metadata> {
     keywords: ["Leevi Laukka", "Portfolio", "Web Developer", "Software Engineer"],
     description: i("work"),
     openGraph: {
-      title: `Leevi Laukka | ${i("workTitle")}`,
+      title: i("workTitle"),
       alternateLocale: [ "fi-FI", "en-US" ],
       description: i("work"),
       url: "leevila.fi",
       type: "website",
+    },
+    twitter: {
+      title: i("workTitle"),
+      card: "summary",      creator: "@LeeviLaukka",
+      images: [
+        {
+          url: "https://leevila.fi/twitter-image.jpg",
+          alt: "Leevi Laukka",
+        },
+      ],
     },
   }
 };

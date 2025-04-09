@@ -5,11 +5,68 @@ import Link from "next/link";
 import translations, { Lang, } from "@/translations";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import { Metadata } from "next";
+import { Params } from "next/dist/server/request/params";
 
 const interSans = Inter({
   variable: "--font-inter-sans",
   subsets: ["latin"],
 });
+
+export async function generateMetadata({ params }: { params: Promise<Params & { lang: string }> }): Promise<Metadata> {
+  const lang = (await params).lang;
+  const i = translations(lang.split("-")[0] as Lang);
+
+  return {
+    title: {
+      template: "%s | Leevi Laukka",
+      default: "Leevi Laukka",
+    },
+    keywords: ["Leevi Laukka", "Portfolio", "Web Developer", "Software Engineer"],
+    openGraph: {
+      title: {
+        template: "%s | Leevi Laukka",
+        default: "Leevi Laukka",
+      },
+      alternateLocale: ["fi-FI", "en-US"],
+      description: i("ogDesc"),
+      url: "leevila.fi",
+      type: "website",
+      images: [
+        {
+          url: "https://leevila.fi/opengraph-image.jpg",
+          alt: "Leevi Laukka",
+        },
+      ],
+      locale: lang,
+      siteName: "Leevi Laukka",
+    },
+    twitter: {
+      card: "summary",
+      title: {
+        template: "%s | Leevi Laukka",
+        default: "Leevi Laukka",
+      },
+      creator: "@LeeviLaukka",
+      description: i("ogDesc"),
+      site: "https://leevila.fi",
+      creatorId: "@LeeviLaukka",
+      images: [
+        {
+          url: "https://leevila.fi/twitter-image.jpg",
+          alt: "Leevi Laukka",
+        },
+      ],
+    },   
+    alternates: {
+      languages: {
+        "fi": "/fi-FI",
+        "en": "/en-US",
+      },
+    },
+    description: i("ogDesc"),
+  }
+}
 
 export default async function RootLayout({
   children,
@@ -18,7 +75,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: any
 }>) {
-  const {lang} = await params;
+  const { lang } = await params;
   const i = translations(lang.split("-")[0] as Lang);
 
   return (

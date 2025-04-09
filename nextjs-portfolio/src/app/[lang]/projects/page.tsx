@@ -20,7 +20,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
   const i = translations(lang.split("-")[0] as Lang);
 
   return {
-    title: `Leevi Laukka | ${i("projectsTitle")}`,
+    title: i("projectsTitle"),
     alternates: {
       languages: {
         "fi": "/fi-FI/projects",
@@ -30,17 +30,28 @@ export async function generateMetadata({ params }): Promise<Metadata> {
     keywords: ["Leevi Laukka", "Portfolio", "Web Developer", "Software Engineer"],
     description: i("projects"),
     openGraph: {
-      title: `Leevi Laukka | ${i("projectsTitle")}`,
+      title: i("projectsTitle"),
       alternateLocale: [ "fi-FI", "en-US" ],
       description: i("projects"),
       url: "leevila.fi",
       type: "website",
     },
+    twitter: {
+      title: i("projectsTitle"),
+      card: "summary",
+      creator: "@LeeviLaukka",
+      images: [
+        {
+          url: "https://leevila.fi/twitter-image.jpg",
+          alt: "Leevi Laukka",
+        },
+      ],
+    },
   }
 };
 
 export default async function ProjectPage({params}: any) {
-  const rawLang = await params.lang;
+  const {lang: rawLang} = await params;
   const lang = rawLang.split("-")[0];
   const projectList = await client.fetch<SanityDocument[]>(POSTS_QUERY, { language: lang }, options);
 

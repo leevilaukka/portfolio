@@ -70,7 +70,7 @@ const list = {
     },
     "ogDesc": {
         "en": "Hi, I'm Leevi, a web developer from Finland! Welcome to my portfolio.",
-        "fi": "Hei, olen Leevi, web-kehittäjä Suomesta! Tervetuloa portfoliooni."
+        "fi": "Hei, olen Leevi, vastikään valmistunut IT-tradenomi ja web-kehittäjä! Tervetuloa portfoliooni."
     },
 } as const
 

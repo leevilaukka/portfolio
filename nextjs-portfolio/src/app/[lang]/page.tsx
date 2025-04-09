@@ -5,31 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import Icon from "./components/Icon";
 import translations, { Lang } from "@/translations";
-import { Metadata } from "next";
-
-export async function generateMetadata({ params }): Promise<Metadata> {
-  const { lang } = await params;
-  const i = translations(lang.split("-")[0] as Lang);
-
-  return {
-    title: `Leevi Laukka | Portfolio`,
-    alternates: {
-      languages: {
-        "fi": "/fi-FI",
-        "en": "/en-US",
-      },
-    },
-    keywords: ["Leevi Laukka", "Portfolio", "Web Developer", "Software Engineer"],
-    description: i("ogDesc"),
-    openGraph: {
-      title: `Leevi Laukka | Portfolio`,
-      alternateLocale: [ "fi-FI", "en-US" ],
-      description: i("ogDesc"),
-      url: "leevila.fi",
-      type: "website",
-    },
-  }
-};
 
 export default async function IndexPage({ params }: any) {
   const PROFILE_QUERY = `*[_type == "profile" && language == $language]{ _id, title, location, description, email, github, linkedin, skills, "imageURL": image.asset->url, "cv": cv.asset->url, phone, "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->
