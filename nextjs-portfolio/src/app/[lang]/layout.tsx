@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<Params & { 
       },
       alternateLocale: ["fi-FI", "en-US"],
       description: i("ogDesc"),
-      url: "leevila.fi",
+      url: "https://leevila.fi",
       type: "website",
       images: [
         {
