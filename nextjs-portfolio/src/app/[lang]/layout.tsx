@@ -98,6 +98,9 @@ export default async function RootLayout({
               <li>
                 <Link className="hover:underline" href="/projects">{i("projects")}</Link>
               </li>
+              <li>
+                <Link className="hover:underline" href="/blog">{i("blog")}</Link>
+              </li>
             </ul>
           </nav>
         </header>
