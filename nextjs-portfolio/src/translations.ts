@@ -72,6 +72,26 @@ const list = {
         "en": "Hi, I'm Leevi, a web developer from Finland! Welcome to my portfolio.",
         "fi": "Hei, olen Leevi, vastikään valmistunut IT-tradenomi ja web-kehittäjä! Tervetuloa portfoliooni."
     },
+    "years": {
+        "en": "years",
+        "fi": "vuotta"
+    },
+    "months": {
+        "en": "months",
+        "fi": "kuukautta"
+    },
+    "year": {
+        "en": "year",
+        "fi": "vuosi"
+    },
+    "month": {
+        "en": "month",
+        "fi": "kuukausi"
+    },
+    "and": {
+        "en": "and",
+        "fi": "ja"
+    },
 } as const
 
 
